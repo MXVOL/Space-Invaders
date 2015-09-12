@@ -1,0 +1,211 @@
+tool
+cpp char Map[20][20] =
+(
+nn "###################",
+nn "#                 #",
+nn "#     @     @     #",
+nn "#      @   @      #",
+nn "#     @@@@@@@     #",
+nn "#    @@ @@@ @@    #",
+nn "#   @@@@@@@@@@@   #",
+nn "#   @ @@@@@@@ @   #",
+nn "#   @ @     @ @   #",
+nn "#      @@ @@      #",
+nn "#                 #",
+nn "#                 #",
+nn "#                 #",
+nn "#                 #",
+nn "#                 #",
+nn "#                 #",
+nn "#                 #",
+nn "#        ^        #",
+nn "###################",
+end;
+cpp bool endgame = false;
+shortn gamespeed=50
+shortn randomNum
+shortn maxHealth=100
+shortn yourHealth=maxHealth
+cpp char sss=char(-37);
+main(
+baptism "Space Invaders"
+color 10
+system "cls"
+system "mode 70,24"
+printl "            _______  _______  _______  _______  _______              "
+printl "           |       ||       ||   _   ||       ||       |             "
+printl "           |  _____||    _  ||  |_|  ||       ||    ___|             "
+printl "           | |_____ |   |_| ||       ||       ||   |___              "
+printl "           |_____  ||    ___||       ||      _||    ___|             "
+printl "            _____| ||   |    |   _   ||     |_ |   |___              "
+printl "           |_______||___|    |__| |__||_______||_______|             "
+printl " ___  __    _  __   __  _______  ______   _______  ______    _______ "
+printl "|   ||  |  | ||  | |  ||   _   ||      | |       ||    _ |  |       |"
+printl "|   ||   |_| ||  |_|  ||  |_|  ||  _    ||    ___||   | ||  |  _____|"
+printl "|   ||       ||       ||       || | |   ||   |___ |   |_||_ | |_____ "
+printl "|   ||  _    ||       ||       || |_|   ||    ___||    __  ||_____  |"
+printl "|   || | |   | |     | |   _   ||       ||   |___ |   |  | | _____| |"
+printl "|___||_|  |__|  |___|  |__| |__||______| |_______||___|  |_||_______|"
+printl "                              "<<sss<<"     "<<sss<<"  "
+printl "                               "<<sss<<"   "<<sss<<"   "
+printl "                              "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<"  "
+printl "                             "<<sss<<""<<sss<<" "<<sss<<""<<sss<<""<<sss<<" "<<sss<<""<<sss<<" "
+printl "                            "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""
+printl "                            "<<sss<<" "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<" "<<sss<<""
+printl "                            "<<sss<<" "<<sss<<"     "<<sss<<" "<<sss<<""
+printl "                               "<<sss<<""<<sss<<" "<<sss<<""<<sss<<"   "
+printl "(C) Piotr Zborowski 2015"
+stop;
+define game
+system "mode 20,21"
+cpp while(endgame == false)
+(
+cpp srand(time(0));
+system "cls"
+for y=0; y<20; y++
+(
+var Map[y]
+next line
+)
+print "Health: "
+var yourHealth
+print "/"
+var maxHealth
+for y=0; y<20; y++
+(
+for x=0; x<20; x++
+(
+magazine Map[y][x]
+(
+case '^'
+if GetAsyncKeyState(VK_LEFT) != 0
+(
+shortn newX=x-1
+magazine Map[y][newX]
+(
+case ' '
+nn Map[y][x] = ' ';
+nn x--;
+nn Map[y][newX] = '^';
+close case
+)
+)
+if GetAsyncKeyState(VK_RIGHT) != 0
+(
+shortn newX=x+1
+magazine Map[y][newX]
+(
+case ' '
+nn Map[y][x] = ' ';
+nn x++;
+nn Map[y][newX] = '^';
+close case
+)
+)
+if GetAsyncKeyState(VK_SPACE) != 0
+(
+cpp Beep( 600, 100 );
+nn y--;
+nn Map[y][x] = '|';
+)
+if GetAsyncKeyState(VK_ESCAPE) != 0
+(
+system "mode 32,10"
+system "cls"
+printl "            "<<sss<<"     "<<sss<<"  "
+printl "             "<<sss<<"   "<<sss<<"   "
+printl "            "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<"  "
+printl "           "<<sss<<""<<sss<<" "<<sss<<""<<sss<<""<<sss<<" "<<sss<<""<<sss<<" "
+printl "          "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""
+printl "          "<<sss<<" "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<" "<<sss<<""
+printl "          "<<sss<<" "<<sss<<"     "<<sss<<" "<<sss<<""
+printl "             "<<sss<<""<<sss<<" "<<sss<<""<<sss<<"   "
+printl "Press enter to return the game."
+stop;
+goto game
+)
+close case
+case '|'
+nn Map[y][x] = ' ';
+nn y--;
+if (Map[y][x] != '#' && Map[y][x] != sss)
+(
+nn Map[y][x] = '|';
+)
+if Map[y][x] == sss
+(
+nn Map[y][x] = ' ';
+)
+close case
+case '@'
+nn randomNum = rand() %10 + 1;
+if randomNum == 1
+(
+nn y++;
+if (Map[y][x] != '@' && Map[y][x] != sss)
+(
+nn Map[y][x] = sss;
+nn Map[y][x] = '!';
+)
+cpp else
+(
+nn Map[y][x] = sss;
+)
+)
+if randomNum != 1
+(
+nn Map[y][x] = sss;
+)
+close case
+case char(-37)
+nn Map[y][x] = sss;
+nn randomNum = rand() %10 + 1;
+if randomNum == 1
+(
+nn y++;
+if (Map[y][x] != char(-37) && Map[y][x] != '@')
+(
+nn Map[y][x] = '!';
+)
+)
+close case
+case '!'
+nn Map[y][x] = ' ';
+nn y++;
+if (Map[y][x] != '#' && Map[y][x] != '^' && Map[y][x] != char(-37) && Map[y][x] != '@')
+(
+nn Map[y][x] = '!';
+)
+if Map[y][x] == '#'
+(
+cpp Beep( 600, 100 );
+)
+cpp else
+if Map[y][x] == '^'
+(
+cpp Beep( 700, 100 );
+nn yourHealth -= 20;
+)
+close case
+)
+)
+if yourHealth <= 0
+(
+nn endgame = true;
+)
+)
+sleep gamespeed
+)
+system "mode 12,10"
+system "cls"
+printl "  "<<sss<<"     "<<sss<<"  "
+printl "   "<<sss<<"   "<<sss<<"   "
+printl "  "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<"  "
+printl " "<<sss<<""<<sss<<" "<<sss<<""<<sss<<""<<sss<<" "<<sss<<""<<sss<<" "
+printl ""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""
+printl ""<<sss<<" "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<" "<<sss<<""
+printl ""<<sss<<" "<<sss<<"     "<<sss<<" "<<sss<<""
+printl "   "<<sss<<""<<sss<<" "<<sss<<""<<sss<<"   "
+printl "Game over! "
+stop;
+)
