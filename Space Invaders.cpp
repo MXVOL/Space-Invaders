@@ -5,7 +5,6 @@
 #include <time.h>
 #include <cstdlib>
 #include <fstream>
-#define UNICODE
 #include <conio.h>
 #include <math.h>
 #include <stdlib.h>
