@@ -36,10 +36,11 @@ using namespace std;
 	};
 
 	bool endgame = false;	int gamespeed=50;	int randomNum;	int maxHealth=100;	int yourHealth=maxHealth;
-	char sss=char(-37);int main()
-{
-system("color 17");
-SetConsoleTitle("Space Invaders");SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
+	char sss=char(-37);
+	int main()
+	{
+	system("color 17");
+	SetConsoleTitle("Space Invaders");SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 10);
 
 	system("cls");
 	system("mode 70,24");
@@ -73,133 +74,133 @@ game:
 	while(endgame == false)
 	{
 
-	srand(time(0));
-	system("cls");
-	for(int y=0; y<20; y++)
-	{
+		srand(time(0));
+		system("cls");
+		for(int y=0; y<20; y++)
+		{
 
-	cout << Map[y];
-cout<<endl;
+			cout << Map[y];
+			cout<<endl;
 
-	}
+		}
 
-	cout<<"Health: ";
-	cout << yourHealth;
+		cout<<"Health: ";
+		cout << yourHealth;
 
-	cout<<"/";
-	cout << maxHealth;
+		cout<<"/";
+		cout << maxHealth;
 
-	for(int y=0; y<20; y++)
-	{
+		for(int y=0; y<20; y++)
+		{
 
-	for(int x=0; x<20; x++)
-	{
-switch (Map[y][x])
+			for(int x=0; x<20; x++)
+			{
+				switch (Map[y][x])
 
-	{
+				{
 
-	case '^':
-	if(GetAsyncKeyState(VK_LEFT) != 0)
-	{
-	int newX=x-1;switch (Map[y][newX])
+				case '^':
+				if(GetAsyncKeyState(VK_LEFT) != 0)
+				{
+					int newX=x-1;switch (Map[y][newX])
 
-	{
+				{
 
-	case ' ':
-	Map[y][x] = ' ';
-	x--;
-	Map[y][newX] = '^';break;
+				case ' ':
+				Map[y][x] = ' ';
+				x--;
+				Map[y][newX] = '^';break;
 
-	}
+				}
 
-	}
+			}
 
-	if(GetAsyncKeyState(VK_RIGHT) != 0)
-	{
-	int newX=x+1;switch (Map[y][newX])
+			if(GetAsyncKeyState(VK_RIGHT) != 0)
+			{
+				int newX=x+1;switch (Map[y][newX])
 
-	{
+				{
 
-	case ' ':
-	Map[y][x] = ' ';
-	x++;
-	Map[y][newX] = '^';break;
+					case ' ':
+					Map[y][x] = ' ';
+					x++;
+					Map[y][newX] = '^';break;
 
-	}
+				}
 
-	}
+			}
 
-	if(GetAsyncKeyState(VK_SPACE) != 0)
-	{
+			if(GetAsyncKeyState(VK_SPACE) != 0)
+			{
 
-	Beep( 600, 100 );
-	y--;
-	Map[y][x] = '|';
-	}
+				Beep( 600, 100 );
+				y--;
+				Map[y][x] = '|';
+			}
 
-	if(GetAsyncKeyState(VK_ESCAPE) != 0)
-	{
+			if(GetAsyncKeyState(VK_ESCAPE) != 0)
+			{
 
-	system("mode 32,10");
-	system("cls");
-	cout<<"            "<<sss<<"     "<<sss<<"  "<<endl;
-	cout<<"             "<<sss<<"   "<<sss<<"   "<<endl;
-	cout<<"            "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<"  "<<endl;
-	cout<<"           "<<sss<<""<<sss<<" "<<sss<<""<<sss<<""<<sss<<" "<<sss<<""<<sss<<" "<<endl;
-	cout<<"          "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<endl;
-	cout<<"          "<<sss<<" "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<" "<<sss<<""<<endl;
-	cout<<"          "<<sss<<" "<<sss<<"     "<<sss<<" "<<sss<<""<<endl;
-	cout<<"             "<<sss<<""<<sss<<" "<<sss<<""<<sss<<"   "<<endl;
-	cout<<"Press enter to return the game."<<endl;
-	getchar();
-goto game;
+				system("mode 32,10");
+				system("cls");
+				cout<<"            "<<sss<<"     "<<sss<<"  "<<endl;
+				cout<<"             "<<sss<<"   "<<sss<<"   "<<endl;
+				cout<<"            "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<"  "<<endl;
+				cout<<"           "<<sss<<""<<sss<<" "<<sss<<""<<sss<<""<<sss<<" "<<sss<<""<<sss<<" "<<endl;
+				cout<<"          "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<endl;
+				cout<<"          "<<sss<<" "<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<""<<sss<<" "<<sss<<""<<endl;
+				cout<<"          "<<sss<<" "<<sss<<"     "<<sss<<" "<<sss<<""<<endl;
+				cout<<"             "<<sss<<""<<sss<<" "<<sss<<""<<sss<<"   "<<endl;
+				cout<<"Press enter to return the game."<<endl;
+				getchar();
+				goto game;
 
-	}
-break;
+				}
+			break;
 
-	case '|':
-	Map[y][x] = ' ';
-	y--;
-	if((Map[y][x] != '#' && Map[y][x] != sss))
-	{
+			case '|':
+			Map[y][x] = ' ';
+			y--;
+			if((Map[y][x] != '#' && Map[y][x] != sss))
+			{
 
-	Map[y][x] = '|';
-	}
+				Map[y][x] = '|';
+			}
 
-	if(Map[y][x] == sss)
-	{
+			if(Map[y][x] == sss)
+			{
 
-	Map[y][x] = ' ';
-	}
-break;
+				Map[y][x] = ' ';
+			}
+			break;
 
-	case '@':
-	randomNum = rand() %10 + 1;
-	if(randomNum == 1)
-	{
+			case '@':
+			randomNum = rand() %10 + 1;
+			if(randomNum == 1)
+			{
 
-	y++;
-	if((Map[y][x] != '@' && Map[y][x] != sss))
-	{
+				y++;
+				if((Map[y][x] != '@' && Map[y][x] != sss))
+				{
 
-	Map[y][x] = sss;
-	Map[y][x] = '!';
-	}
+					Map[y][x] = sss;
+					Map[y][x] = '!';
+				}
 
-	else
-	{
+			else
+			{
 
-	Map[y][x] = sss;
-	}
+				Map[y][x] = sss;
+			}
 
-	}
+		}
 
 	if(randomNum != 1)
 	{
 
-	Map[y][x] = sss;
+		Map[y][x] = sss;
 	}
-break;
+	break;
 
 	case char(-37):
 	Map[y][x] = sss;
@@ -207,15 +208,15 @@ break;
 	if(randomNum == 1)
 	{
 
-	y++;
-	if((Map[y][x] != char(-37) && Map[y][x] != '@'))
-	{
+		y++;
+		if((Map[y][x] != char(-37) && Map[y][x] != '@'))
+		{
 
-	Map[y][x] = '!';
-	}
+			Map[y][x] = '!';
+		}
 
 	}
-break;
+	break;
 
 	case '!':
 	Map[y][x] = ' ';
@@ -223,37 +224,36 @@ break;
 	if((Map[y][x] != '#' && Map[y][x] != '^' && Map[y][x] != char(-37) && Map[y][x] != '@'))
 	{
 
-	Map[y][x] = '!';
+		Map[y][x] = '!';
 	}
 
 	if(Map[y][x] == '#')
 	{
 
-	Beep( 600, 100 );
+		Beep( 600, 100 );
 	}
 
 	else
 	if(Map[y][x] == '^')
 	{
 
-	Beep( 700, 100 );
-	yourHealth -= 20;
+		Beep( 700, 100 );
+		yourHealth -= 20;
 	}
-break;
-
-	}
+	break;
 
 	}
 
-	if(yourHealth <= 0)
-	{
+}
 
+if(yourHealth <= 0)
+{
 	endgame = true;
-	}
+}
 
-	}
+}
 
-Sleep(gamespeed);
+	Sleep(gamespeed);
 
 	}
 
@@ -270,4 +270,4 @@ Sleep(gamespeed);
 	cout<<"Game over! "<<endl;
 	getchar();
 
-	}
+}
